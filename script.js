@@ -1,14 +1,15 @@
 const options = ['rock', 'paper', 'scissors'];
 
 let playerScore = 0;
+
 let computerScore = 0;
 
-const computerPlay = () => {
+function computerPlay() {
   const randomOptions = Math.floor(Math.random() * options.length);
   return options[randomOptions];
 };
 
-const playRound = (playerSelection, computerSelection) => {
+function playRound(playerSelection, computerSelection){
   switch (playerSelection + computerSelection) {
     case 'scissorspaper':
       playerScore += 1;
