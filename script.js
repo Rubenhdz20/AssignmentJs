@@ -1,44 +1,28 @@
 const options = ['rock', 'paper', 'scissors'];
 
-let playerScore = 0;
-
-let computerScore = 0;
-
 function computerPlay() {
   const randomOptions = Math.floor(Math.random() * options.length);
   return options[randomOptions];
-};
+};  
 
 function playRound(playerSelection, computerSelection){
   switch (playerSelection + computerSelection) {
     case 'scissorspaper':
-      playerScore += 1;
-      console.log(playerScore);
       console.log('You win! Scissors cut Papers🎉');
       break;
     case 'rockscissors':
-      playerScore += 1;
-      console.log(playerScore);
       console.log('You win! Rocks destroy Scissors🎉');
       break;
     case 'paperrock':
-      playerScore += 1;
-      console.log(playerScore);
       console.log('You win! Papers wrap Rocks🎉');
       break;
     case 'paperscissors':
-      computerScore += 1;
-      console.log(computerScore);
       console.log('You lose! Papers wrap Rocks😭');
       break;
     case 'scissorsrock':
-      computerScore += 1;
-      console.log(computerScore);
       console.log('You lose! Scissors are destroyed by Rocks😭');
       break;
     case 'rockpaper':
-      computerScore += 1;
-      console.log(computerScore);
       console.log('You lose! Rocks are wrapped by Papers😭');
       break;
     case 'paperpaper':
