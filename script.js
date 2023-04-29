@@ -12,6 +12,8 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection){
   switch (playerSelection + computerSelection) {
     case 'scissorspaper':
+      playerScore += 1;
+      console.log(playerScore);
       console.log('You win! Scissors cut Papers🎉');
       break;
     case 'rockscissors':
