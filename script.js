@@ -52,7 +52,7 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 function game() {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     let playerSelection = window.prompt('Please enter your choice: ').toLowerCase();
     let computerSelection = computerPlay();
     console.log(computerSelection);
