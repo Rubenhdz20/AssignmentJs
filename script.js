@@ -1,11 +1,9 @@
-// Function to generate a random computer selection
 function computerPlay() {
   const choices = ['rock', 'paper', 'scissors'];
   const randomIndex = Math.floor(Math.random() * choices.length);
   return choices[randomIndex];
 }
 
-// Function to play a single round of the game
 function playRound() {
   const playerSelection = prompt(`Rock, paper, or scissors?`).toLowerCase();
   const computerSelection = computerPlay();
@@ -31,7 +29,6 @@ function playRound() {
   return result;
 }
 
-// Function to play a game of five rounds
 function game() {
   const score = {
     player: 0,
@@ -72,5 +69,4 @@ function game() {
   }
 }
 
-// Start the game
 game();
