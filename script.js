@@ -1,64 +1,76 @@
-const options = ['rock', 'paper', 'scissors'];
-
-let playerScore = 0;
-
-let computerScore = 0;
-
+// Function to generate a random computer selection
 function computerPlay() {
-  const randomOptions = Math.floor(Math.random() * options.length);
-  return options[randomOptions];
-};  
+  const choices = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
+}
 
-function playRound(playerSelection, computerSelection){
-  switch (playerSelection + computerSelection) {
-    case 'scissorspaper':
-      playerScore += 1;
-      console.log(playerScore);
-      console.log('You win! Scissors cut Papers🎉');
-      break;
-    case 'rockscissors':
-      playerScore += 1;
-      console.log(playerScore);
-      console.log('You win! Rocks destroy Scissors🎉');
-      break;
-    case 'paperrock':
-      playerScore += 1;
-      console.log(playerScore);
-      console.log('You win! Papers wrap Rocks🎉');
-      break;
-    case 'paperscissors':
-      computerScore += 1;
-      console.log(computerScore);
-      console.log('You lose! Papers wrap Rocks😭');
-      break;
-    case 'scissorsrock':
-      computerScore += 1;
-      console.log(computerScore);
-      console.log('You lose! Scissors are destroyed by Rocks😭');
-      break;
-    case 'rockpaper':
-      computerScore += 1;
-      console.log(computerScore);
-      console.log('You lose! Rocks are wrapped by Papers😭');
-      break;
-    case 'paperpaper':
-    case 'scissorsscissors':
-    case 'rockrock':
-      console.log('Its a draw!😰');
-      break;
-    default:
-      console.log('Please enter a valid choise!🧐')
-      break;
+// Function to play a single round of the game
+function playRound() {
+  const playerSelection = prompt(`Rock, paper, or scissors?`).toLowerCase();
+  const computerSelection = computerPlay();
+  let result;
+
+  if (!['rock', 'paper', 'scissors'].includes(playerSelection)) {
+    alert(`"${playerSelection}" is not a valid choice.`);
+    return playRound();
   }
-};
 
+  if (playerSelection === computerSelection) {
+    result = "It's a tie!";
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    result = `You win! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    result = `You lose! ${computerSelection} beats ${playerSelection}.`;
+  }
+
+  return result;
+}
+
+// Function to play a game of five rounds
 function game() {
+  const score = {
+    player: 0,
+    computer: 0,
+    tie: 0,
+  };
+
   for (let i = 0; i < 5; i++) {
-    let playerSelection = window.prompt('Please enter your choice: ').toLowerCase();
-    let computerSelection = computerPlay();
-    console.log(computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
+    const roundResult = playRound();
+    alert(`Round ${i + 1}: ${roundResult}`);
+    if (roundResult.startsWith('You win')) {
+      score.player++;
+    } else if (roundResult.startsWith('You lose')) {
+      score.computer++;
+    } else {
+      score.tie++;
+    }
+  }
+
+  const winner =
+    score.player > score.computer
+      ? 'You win!'
+      : score.player < score.computer
+      ? 'You lose!'
+      : "It's a tie!";
+
+  alert(`
+    Final score:
+    You: ${score.player}
+    Computer: ${score.computer}
+    Ties: ${score.tie}
+    ${winner}
+  `);
+
+  const playAgain = confirm('Play again?');
+  if (playAgain) {
+    game();
   }
 }
 
+// Start the game
 game();
